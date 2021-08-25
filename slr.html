@@ -1,0 +1,234 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compiladores - Análise SLR (Simple LR)</title>
+<link rel="stylesheet" href="bootstrap/css/estilo.css">
+<link rel="stylesheet" href="bootstrap/css/style.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/jquery.js"></script>
+
+<!-- inclusão dos arquivos referentes à analise SLR -->
+<script language="javascript" src="js/underscore.js"></script>
+<script language="javascript" src="js/tools.js"></script>
+<script language="javascript" src="js/grammar.js"></script>
+<script language="javascript" src="js/grammarview.js"></script>
+<script language="javascript" src="js/slritem.js"></script>
+<script language="javascript" src="js/lrclosuretable.js"></script>
+<script language="javascript" src="js/lrclosuretableview.js"></script>
+<script language="javascript" src="js/tree.js"></script>
+<script language="javascript" src="js/treeview.js"></script>
+<script language="javascript" src="js/lrtable.js"></script>
+<script language="javascript" src="js/lrtableview.js"></script>
+<script language="javascript" src="js/lrparseview.js"></script>
+
+</head>
+<body>
+
+	<!-- topo -->
+	<nav class="navbar bg-black" role="navigation">
+      <div class="container">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class='active'><a href="#">Trabalho II de Compiladores - 2016/1 - ANÁLISE SLR</a></li>
+              </ul>             
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </div>
+    </nav>
+
+
+<script language="javascript">
+var lrTable;
+
+//função chamada quando for realizada alguma alteração dos dados da gramática e seu conjunto de produções
+function grammarChanged()
+{
+	displayRuleIndices(); //numera o conjunto de produções
+	
+	var grammar = new Grammar($element('grammar').value); //inicia nova variavel que recebe a gramatica
+	var lrClosureTable = new LRClosureTable(grammar); // inicia nova variavel que recebe a tabela de closure
+	lrTable = new LRTable(lrClosureTable); //inicia nova variavel que recebe a tabela sintatica LR
+
+	$element('firstFollowView').innerHTML = formatFirstFollow(grammar); //exibição da tabela de first e follow
+	$element('lrClosureTableView').innerHTML = formatLRClosureTable(lrClosureTable); //exibição do closure
+	$element('lrTableView').innerHTML = formatLRTable(lrTable); //exibição da tabela sintatica LR - Action e Goto
+	
+	parseInput();//exibe o reconhecimento  da sentença
+}
+</script>
+
+
+<div class="container">
+    <h2 align="center">Análise SLR</h2>
+    <hr>
+
+    <div class="row">
+    	<div class="col-md-1"></div>
+    	<div class="col-md-10">
+    		<!-- tabela que apresenta os resultados ao usuario -->
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td>
+							<div id="grammarView"></div><br><!-- estrutura da gramatica -->
+						</td>
+						<td>
+							<div id="grammarView"></div><br><!-- estrutura da gramatica -->
+						</td>
+					</tr>
+				</tbody>
+			</table>			
+
+			<!-- botao para gerar tabela action/goto -->
+			<div align="center">
+			<hr><button type="button" class="btn btn-success btn-gerar btn-lg">Gerar Tabela Sintática</button>
+			<hr><br><br>	
+			</div>
+
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td>
+							<div id="firstFollowView"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>				
+							
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td>
+							<!-- exibição do conteudo da tabela SLR closure -->
+							<div id="lrClosureTableView"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td>
+							<div id="lrTableView"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td>
+							<div id="lrParseView"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>	
+
+		</div>					
+
+    	<div class="col-md-1"></div>
+    </div><!-- fim row -->
+</div><!-- fim container -->
+
+<div class="bg-black text-center footer" style="margin-top: 100px;">Analisador SLR - Desenvolvido por Fernando Wendland, Gabriel Bittencourt e Mateus Leonhardt - UNISC</div>
+
+</body>
+
+
+
+
+
+<script language="javascript">
+{
+	//realiza algumas validações
+
+	var grammar = new Grammar('A\' -> A\nA -> a A\nA -> a');
+	
+	assertEquality('A\'', grammar.axiom);
+	assertEquality(3, grammar.rules.length);
+	assertEquality(['a'].toString(), grammar.firsts['A'].toString());
+	assertEquality(['$'].toString(), grammar.follows['A'].toString()); //adiciona $ ao conjunto follow
+	
+	assertEquals(new Item(new Rule(grammar, 'A -> a A'), 1), new Item(new Rule(grammar, 'A -> a A'), 1));
+	assertEquality(0, indexOfUsingEquals(new Item(new Rule(grammar, 'A -> a A'), 1), [new Item(new Rule(grammar, 'A -> a A'), 1)]));
+	
+	var lrClosureTable = new LRClosureTable(grammar); //recebe a gramatica para construir a tabela closure
+	
+	assertEquality(3, lrClosureTable.kernels[0].closure.length);
+	assertEquality(4, lrClosureTable.kernels.length);
+	
+	var lrTable = new LRTable(lrClosureTable);  //após definir closure, o conteudo é passado como parametro para a criação da tabela sintática
+	
+	assertEquality(4, lrTable.states.length);
+	assertEquality('s2', lrTable.states[0]['a']);
+	assertEquality('r0', lrTable.states[1]['$']);
+	assertEquality('s2', lrTable.states[2]['a']);
+	assertEquality('r2', lrTable.states[2]['$']);
+	assertEquality('3', lrTable.states[2]['A']);
+	assertEquality('r1', lrTable.states[3]['$']);
+}
+
+{
+	
+	var grammar = new Grammar('A\' -> A\nA -> B\nA -> \'\'\nB -> ( A )');
+	
+	assertEquality('A\'', grammar.axiom);
+	assertEquality(4, grammar.rules.length);
+	assertEquality([EPSILON, '('].toString(), grammar.firsts['A'].toString());
+	assertEquality(['$', ')'].toString(), grammar.follows['A'].toString());
+	assertEquality('A -> .b', new Item(new Rule(grammar, 'A -> b'), 0).toString());
+	
+	var lrClosureTable = new LRClosureTable(grammar);
+	
+	assertEquality(4, lrClosureTable.kernels[0].closure.length);
+	assertEquality(6, lrClosureTable.kernels.length);
+	
+	var lrTable = new LRTable(lrClosureTable);
+	
+	assertEquality(6, lrTable.states.length);
+	assertEquality('s3', lrTable.states[0]['(']);
+	assertEquality('r0', lrTable.states[1]['$']);
+	assertEquality('4', lrTable.states[3]['A']);
+}
+
+
+
+
+//inicia com uma gramática de exemplo para realizar a análise e reconhecer sentenças
+//utilizamos a mesma gramática dos slides de aula para verificar que os resultados gerados realmente estão corretos
+{
+	 //conjunto de produções da gramática
+	var grammar = new Grammar('E\' -> E\n\
+		E -> E + T\n\
+		E -> T\n\
+		T -> T * F\n\
+		T -> F\n\
+		F -> ( E )\n\
+		F -> id');
+	//exibe pre-preenchida no programa
+	$element('grammarView').innerHTML = formatGrammar(grammar);
+}
+
+//senteça para ser reconhecida - mesma dos slides também
+//porem pode ser reconhecida qualquer sentença
+$element('lrParseView').innerHTML = formatInitialParseView('id + id * id', 100);
+
+grammarChanged();
+
+</script>
+
+</body>
+</html>
