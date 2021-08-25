@@ -9,7 +9,7 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="bootstrap/js/jquery.js"></script>
 
-<!-- inclusão dos arquivos referentes à analise SLR -->
+<!-- SLR Analysis Files-->
 <script language="javascript" src="js/underscore.js"></script>
 <script language="javascript" src="js/tools.js"></script>
 <script language="javascript" src="js/grammar.js"></script>
@@ -26,7 +26,7 @@
 </head>
 <body>
 
-	<!-- topo -->
+	<!-- Top -->
 	<nav class="navbar bg-black" role="navigation">
       <div class="container">
         <div class="container-fluid">
@@ -51,20 +51,20 @@
 <script language="javascript">
 var lrTable;
 
-//função chamada quando for realizada alguma alteração dos dados da gramática e seu conjunto de produções
+//function called when any change is made to the grammar data and its production set
 function grammarChanged()
 {
-	displayRuleIndices(); //numera o conjunto de produções
+	displayRuleIndices(); //numbers the set of productions
 	
-	var grammar = new Grammar($element('grammar').value); //inicia nova variavel que recebe a gramatica
-	var lrClosureTable = new LRClosureTable(grammar); // inicia nova variavel que recebe a tabela de closure
-	lrTable = new LRTable(lrClosureTable); //inicia nova variavel que recebe a tabela sintatica LR
+	var grammar = new Grammar($element('grammar').value); //starts a new variable that receives grammar
+	var lrClosureTable = new LRClosureTable(grammar); // start new variable that receives the closure table
+	lrTable = new LRTable(lrClosureTable); //start new variable that receives syntactic table LR
 
-	$element('firstFollowView').innerHTML = formatFirstFollow(grammar); //exibição da tabela de first e follow
-	$element('lrClosureTableView').innerHTML = formatLRClosureTable(lrClosureTable); //exibição do closure
-	$element('lrTableView').innerHTML = formatLRTable(lrTable); //exibição da tabela sintatica LR - Action e Goto
+	$element('firstFollowView').innerHTML = formatFirstFollow(grammar); //first and follow table display
+	$element('lrClosureTableView').innerHTML = formatLRClosureTable(lrClosureTable); //closure display
+	$element('lrTableView').innerHTML = formatLRTable(lrTable); //LR syntactic table display - Action and Goto
 	
-	parseInput();//exibe o reconhecimento  da sentença
+	parseInput();//displays sebtence recognition
 }
 </script>
 
@@ -76,23 +76,23 @@ function grammarChanged()
     <div class="row">
     	<div class="col-md-1"></div>
     	<div class="col-md-10">
-    		<!-- tabela que apresenta os resultados ao usuario -->
+    		<!-- Table that presents the results to the user -->
 			<table class="table table-bordered">
 				<tbody>
 					<tr>
 						<td>
-							<div id="grammarView"></div><br><!-- estrutura da gramatica -->
+							<div id="grammarView"></div><br><!-- grammar structure-->
 						</td>
 						<td>
-							<div id="grammarView"></div><br><!-- estrutura da gramatica -->
+							<div id="grammarView"></div><br><!-- grammar structure-->
 						</td>
 					</tr>
 				</tbody>
 			</table>			
 
-			<!-- botao para gerar tabela action/goto -->
+			<!-- button to generate action/goto table -->
 			<div align="center">
-			<hr><button type="button" class="btn btn-success btn-gerar btn-lg">Gerar Tabela Sintática</button>
+			<hr><button type="button" class="btn btn-success btn-gerar btn-lg">Generate Syntactic Table</button>
 			<hr><br><br>	
 			</div>
 
@@ -110,7 +110,7 @@ function grammarChanged()
 				<tbody>
 					<tr>
 						<td>
-							<!-- exibição do conteudo da tabela SLR closure -->
+							<!-- display the contents of the SLR closure table-->
 							<div id="lrClosureTableView"></div>
 						</td>
 					</tr>
@@ -140,10 +140,10 @@ function grammarChanged()
 		</div>					
 
     	<div class="col-md-1"></div>
-    </div><!-- fim row -->
-</div><!-- fim container -->
+    </div><!-- end row -->
+</div><!-- end container -->
 
-<div class="bg-black text-center footer" style="margin-top: 100px;">Analisador SLR - Desenvolvido por Fernando Wendland, Gabriel Bittencourt e Mateus Leonhardt - UNISC</div>
+<div class="bg-black text-center footer" style="margin-top: 100px;">Compiler Design Final Project</div>
 
 </body>
 
@@ -153,24 +153,24 @@ function grammarChanged()
 
 <script language="javascript">
 {
-	//realiza algumas validações
+	//Perform some validation
 
 	var grammar = new Grammar('A\' -> A\nA -> a A\nA -> a');
 	
 	assertEquality('A\'', grammar.axiom);
 	assertEquality(3, grammar.rules.length);
 	assertEquality(['a'].toString(), grammar.firsts['A'].toString());
-	assertEquality(['$'].toString(), grammar.follows['A'].toString()); //adiciona $ ao conjunto follow
+	assertEquality(['$'].toString(), grammar.follows['A'].toString()); //add $ to the follow set
 	
 	assertEquals(new Item(new Rule(grammar, 'A -> a A'), 1), new Item(new Rule(grammar, 'A -> a A'), 1));
 	assertEquality(0, indexOfUsingEquals(new Item(new Rule(grammar, 'A -> a A'), 1), [new Item(new Rule(grammar, 'A -> a A'), 1)]));
 	
-	var lrClosureTable = new LRClosureTable(grammar); //recebe a gramatica para construir a tabela closure
+	var lrClosureTable = new LRClosureTable(grammar); //get the grammar to build the closure table
 	
 	assertEquality(3, lrClosureTable.kernels[0].closure.length);
 	assertEquality(4, lrClosureTable.kernels.length);
 	
-	var lrTable = new LRTable(lrClosureTable);  //após definir closure, o conteudo é passado como parametro para a criação da tabela sintática
+	var lrTable = new LRTable(lrClosureTable);  //after defining closure, the content is passed as a parameter to create the syntactic table
 	
 	assertEquality(4, lrTable.states.length);
 	assertEquality('s2', lrTable.states[0]['a']);
@@ -206,25 +206,36 @@ function grammarChanged()
 
 
 
-
-//inicia com uma gramática de exemplo para realizar a análise e reconhecer sentenças
-//utilizamos a mesma gramática dos slides de aula para verificar que os resultados gerados realmente estão corretos
+//starts with an example grammar to perform parsing and recognize sentences
+//we use the same grammar as the lesson slides to verify that the results generated are really correct
 {
-	 //conjunto de produções da gramática
-	var grammar = new Grammar('E\' -> E\n\
-		E -> E + T\n\
-		E -> T\n\
-		T -> T * F\n\
-		T -> F\n\
-		F -> ( E )\n\
-		F -> id');
-	//exibe pre-preenchida no programa
+	 //set of grammar productions
+	// var grammar = new Grammar('E\' -> E\n\
+	// 	E -> E + T\n\
+	// 	E -> T\n\
+	// 	T -> T * F\n\
+	// 	T -> F\n\
+	// 	F -> ( E )\n\
+	// 	F -> id');
+
+	var grammar = new Grammar(
+		'S\' -> S\n\
+		S -> q * A * B * C\n\
+		A -> a\n\
+		A -> b * b * D\n\
+		B -> a \n\
+		B -> ԑ \n\
+		C -> b \n\
+		C -> ԑ \n\
+		D -> C \n\
+		D -> ԑ \n\
+		');
+	//displays pre-populated in the program
 	$element('grammarView').innerHTML = formatGrammar(grammar);
 }
-
-//senteça para ser reconhecida - mesma dos slides também
-//porem pode ser reconhecida qualquer sentença
-$element('lrParseView').innerHTML = formatInitialParseView('id + id * id', 100);
+// sentence to be recognized - same as the slides too
+//but any sentence can be recognized
+$element('lrParseView').innerHTML = formatInitialParseView('a * a * b * b * a * a * b * b', 100);
 
 grammarChanged();
 
