@@ -70,7 +70,7 @@ function grammarChanged()
 
 
 <div class="container">
-    <h2 align="center">Análise SLR</h2>
+    <h2 align="center">SLR</h2>
     <hr>
 
     <div class="row">
@@ -211,12 +211,12 @@ function grammarChanged()
 {
 	 //set of grammar productions
 	// var grammar = new Grammar('E\' -> E\n\
-	// 	E -> E + T\n\
-	// 	E -> T\n\
-	// 	T -> T * F\n\
-	// 	T -> F\n\
-	// 	F -> ( E )\n\
-	// 	F -> id');
+		// E -> E + T\n\
+		// E -> T\n\
+		// T -> T * F\n\
+		// T -> F\n\
+		// F -> ( E )\n\
+		// F -> id');
 
 	var grammar = new Grammar(
 		'S\' -> S\n\
@@ -224,11 +224,11 @@ function grammarChanged()
 		A -> a\n\
 		A -> b * b * D\n\
 		B -> a \n\
-		B -> ԑ \n\
+		B -> \'\' \n\
 		C -> b \n\
-		C -> ԑ \n\
+		C -> \'\' \n\
 		D -> C \n\
-		D -> ԑ \n\
+		D -> \'\' \n\
 		');
 	//displays pre-populated in the program
 	$element('grammarView').innerHTML = formatGrammar(grammar);

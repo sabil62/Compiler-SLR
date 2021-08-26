@@ -90,7 +90,7 @@ function formatAction(state, token, isInTable) {
   var result = formattedActionElements.join(" / ");
 
   if (1 < action.length) {
-    result = '<span style="background-color: black;">' + result + "</span>";
+    result = '<span style="background-color: blue;">' + result + "</span>";
   }
 
   return result;
