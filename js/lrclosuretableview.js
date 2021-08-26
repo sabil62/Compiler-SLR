@@ -8,6 +8,16 @@ function formatLRClosureTable(lrClosureTable) {
   result += '<tbody id="lrClosureTableRows">';
 
   var kernel0 = lrClosureTable.kernels[0];
+  console.log(lrClosureTable.kernels);
+  console.log(formatItems(lrClosureTable.kernels[6].items));
+  console.log(formatItems(lrClosureTable.kernels[6].closure));
+  // console.log(lrClosureTable.kernels[6].items);
+
+  // console.log(lrClosureTable.kernels[0].kernel.equals);
+  // var components = [];
+  // for (let key in lrClosureTable.kernels) {
+  //   components.push({ index: key, ...lrClosureTable.kernels[key] });
+  // }
 
   result +=
     "<tr><td></td><td>{" +
