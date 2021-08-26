@@ -1,33 +1,33 @@
 function drawGraph(dataForGraph) {
-    console.log(formatItems(dataForGraph[0].closure))
+
+    let nodeArr = []
+    let edgeArr = []
+
+    for (let i = 0; i < dataForGraph.length; i++){
+        let tempLabel = formatItems(dataForGraph[i].closure)
+        tempLabel.replace(/;/g, '\n')
+        let tempObj = {
+            id: dataForGraph[i].index,
+            label: tempLabel
+        }
+        nodeArr.push(tempObj)
+    }
 
 
-    var nodes = new vis.DataSet([
-        { id: 0, label: "Node 0\nj" },
-        { id: 1, label: "Node 1" },
-        { id: 2, label: "Node 2" },
-        { id: 3, label: "Node 3" },
-        { id: 4, label: "Node 4" },
-        { id: 5, label: "Node 5" },
-        { id: 6, label: "Node 6" },
-        { id: 7, label: "Node 7" },
-        { id: 8, label: "Node 8" },
-    ]);
+    var nodes = new vis.DataSet(nodeArr);
 
     // create an array with edges
-    var edges = new vis.DataSet([
-        { from: 0, to: 1, label: "0-1" },
-        { from: 1, to: 9, label: "0-1" },
-        { from: 0, to: 2, label: "0-2" },
-        { from: 2, to: 3 },
-        { from: 3, to: 4 },
-        { from: 3, to: 5 },
-        { from: 3, to: 6 },
-        { from: 4, to: 7 },
-        { from: 5, to: 8 },
-        { from: 7, to: 9 },
-        { from: 8, to: 11 },
-    ]);
+    for (let i = 0; i < dataForGraph.length; i++){
+        for (const goto in dataForGraph[i].gotos) {
+            let tempObj = {
+                from: dataForGraph[i].index,
+                to: dataForGraph[i].gotos[goto],
+                label: goto
+            }
+            edgeArr.push(tempObj)
+        }
+    }
+    var edges = new vis.DataSet(edgeArr);
 
     // create a network
     var container = document.getElementById("mynetwork");
@@ -51,7 +51,7 @@ function drawGraph(dataForGraph) {
         nodes: {
             color: '#ffffff',
             fixed: false,
-            font: '12px arial black',
+            font: '20px arial black',
             scaling: {
                 label: true
             },
@@ -82,7 +82,8 @@ function formatItems(items) {
             item.dotIndex == item.rule.development.length ||
             EPSILON == item.rule.development[0];
         formattedItems.push(
-            itemIsFinal ? '<span style="color: black;">' + item + "</span>" : item
+            // itemIsFinal ? '<span style="color: black;">' + item + "</span>" : item
+            item
         );
     }
     return formattedItems.join("; ");
