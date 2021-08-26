@@ -8,6 +8,18 @@
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style type="text/css">
+        #mynetwork {
+            width: 600px;
+            height: 400px;
+            border: 1px solid lightgray;
+			margin: 0 auto;
+        }
+		.box-wrapper{
+			text-align: center;
+		}
+    </style>
 
 <!-- SLR Analysis Files-->
 <script language="javascript" src="js/underscore.js"></script>
@@ -47,6 +59,7 @@
       </div>
     </nav>
 
+	<script src="./js/drawGraph.js"></script>
 
 <script language="javascript">
 var lrTable;
@@ -61,7 +74,13 @@ function grammarChanged()
 	lrTable = new LRTable(lrClosureTable); //start new variable that receives syntactic table LR
 
 	$element('firstFollowView').innerHTML = formatFirstFollow(grammar); //first and follow table display
-	$element('lrClosureTableView').innerHTML = formatLRClosureTable(lrClosureTable); //closure display
+	//$element('lrClosureTableView').innerHTML = formatLRClosureTable(lrClosureTable); //closure display
+	
+	let a = formatLRClosureTable(lrClosureTable); //closure display
+	$element('lrClosureTableView').innerHTML = a[0];
+	let dataForGraph = a[1]
+	drawGraph(dataForGraph)
+
 	$element('lrTableView').innerHTML = formatLRTable(lrTable); //LR syntactic table display - Action and Goto
 	
 	parseInput();//displays sebtence recognition
@@ -142,6 +161,8 @@ function grammarChanged()
     	<div class="col-md-1"></div>
     </div><!-- end row -->
 </div><!-- end container -->
+
+<div class='box-wrapper'><div id="mynetwork"></div></div>
 
 <div class="bg-black text-center footer" style="margin-top: 100px;">Compiler Design Final Project</div>
 

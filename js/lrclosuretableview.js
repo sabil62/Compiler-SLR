@@ -20,6 +20,9 @@ function formatLRClosureTable(lrClosureTable) {
 
   var done = [0];
 
+  let globalARR = lrClosureTable.kernels
+
+  console.log(formatItems(lrClosureTable.kernels[0].closure))
   for (var i in lrClosureTable.kernels) {
     var kernel = lrClosureTable.kernels[i];
 
@@ -47,7 +50,7 @@ function formatLRClosureTable(lrClosureTable) {
   result += "</tbody>";
   result += "</table>";
 
-  return result; //retorna a tabela montada
+  return [result, globalARR]; //retorna a tabela montada
 }
 
 //formata os itens da tabela
