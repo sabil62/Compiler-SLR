@@ -71,36 +71,36 @@ function formatAction(state, token, isInTable) {
   var formattedActionElements = [];
 
   if (1 < action.length && isInTable) {
-    // for (var i in action) {
-    //   formattedActionElements.push(
-    //     '<input type="radio" name="' +
-    //       state.index +
-    //       "_" +
-    //       token +
-    //       '" ' +
-    //       (i == 0 ? 'checked="true"' : "") +
-    //       ' onchange="parseInput();">' +
-    //       formatActionElement(action[i]) +
-    //       "</input>"
-    //   );
-    // }
+    for (var i in action) {
+      formattedActionElements.push(
+        '<input type="radio" name="' +
+          state.index +
+          "_" +
+          token +
+          '" ' +
+          (i == 0 ? 'checked="true"' : "") +
+          ' onchange="parseInput();">' +
+          formatActionElement(action[i]) +
+          "</input>"
+      );
+    }
 
     // let {"index": a, "*": b} = state
     // b.length = 1
     // let news = {
     //   "index":a,
     //   "*": b}
-    formattedActionElements.push(
-      '<input type="checkbox"  name="' +
-        state.index +
-        "_" +
-        token +
-        '" ' +
-        (i == 0 ? 'checked="true"' : "") +
-        ' onchange="parseInput();">' +
-        formatActionElement(action[0]) +
-        "</input>"
-    );
+    // formattedActionElements.push(
+    //   '<input type="checkbox"  name="' +
+    //     state.index +
+    //     "_" +
+    //     token +
+    //     '" ' +
+    //     (i == 0 ? 'checked="true"' : "") +
+    //     ' onchange="parseInput();">' +
+    //     formatActionElement(action[0]) +
+    //     "</input>"
+    // );
   }
   // formattedActionElements.push(formatActionElement(action[0]));
   else {
@@ -126,7 +126,7 @@ function formatAction(state, token, isInTable) {
 function formatActionElement(actionElement) {
   return actionElement
     .toString()
-    .replace("r0", '<span style="color: black; padding:"10px">Accept</span>')
+    .replace("r0", '<span style="color: black;">Accept</span>')
     .replace(/(s|\b)([0-9]+)/g, '$1<span style="color: black;">$2</span>')
     .replace(/r([0-9]+)/g, 'r<sub style="color: black;">$1</sub>');
 }

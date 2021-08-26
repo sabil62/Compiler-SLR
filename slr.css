@@ -1,14 +1,15 @@
 .teams {
-  margin: 100px 0;
+  margin: 100px 60px;
 }
 
-.teams h1 {
+.teams h2 {
   font-size: 52px;
-  margin-bottom: 75px;
+  margin-bottom: 125px;
   background: #b7ccda;
-  display: inline-block;
+  /* display: inline-block; */
   padding: 7px 24px;
   margin-top: 100px;
+  font-weight: 800;
 }
 
 .teams .picture-box {
@@ -24,8 +25,15 @@
   box-shadow: 5px 5px 20px #b7ccda, -2px -2px 20px rgba(252, 55, 55, 0.274);
   border-radius: 4.2px;
 }
+.teams .picture-box .team-image-sir {
+  width: 300px;
+  -webkit-box-shadow: 5px 5px 20px #b7ccda,
+    -2px -2px 20px rgba(252, 55, 55, 0.274);
+  box-shadow: 5px 5px 20px #b7ccda, -2px -2px 20px rgba(252, 55, 55, 0.274);
+  border-radius: 4.2px;
+}
 
-.teams .picture-box .team-name-profile {
+.team-name-profile {
   height: 135px;
   width: 230px;
   position: absolute;
@@ -41,11 +49,11 @@
   transition: 0.4s ease;
 }
 
-.teams .picture-box .team-name-profile:hover {
+.team-name-profile:hover {
   background-color: #b3c8d6;
 }
 
-.teams .picture-box .team-name-profile h3 {
+.team-name-profile h3 {
   font-family: Roboto, sans-serif;
   font-weight: 600;
   margin-bottom: 5px;

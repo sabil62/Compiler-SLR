@@ -93,7 +93,7 @@ function parseInput() {
 //Table Structure -in  HTML
 function formatInitialParseView(input, maximumStepCount) {
   var result =
-    '<p><b>Sentence to be recognized: </b><input class=\'form-control\' id="input" type="text" size="' +
+    '<p><b>Input Sequence: </b><input class=\'form-control\' id="input" type="text" size="' +
     input.length +
     '" onkeyup="resize(this, 1);" onchange="parseInput();" value="' +
     input +
@@ -109,9 +109,9 @@ function formatInitialParseView(input, maximumStepCount) {
   result += "<br>";
   result += "<table class='table table-bordered'>";
   result += "<thead>";
-  result += '<tr><th colspan="4">Recognition of the above Entry</th></tr>';
+  result += '<tr><th colspan="4">Parsing Input Sequence</th></tr>';
   result +=
-    "<tr><th>Step</th><th>Stack</th><th>Intry Tape</th><th>Action</th></tr>";
+    "<tr><th>Step</th><th>Stack</th><th>Input String</th><th>Action</th></tr>";
   result += "</thead>";
   result += '<tbody id="traceAndTreeRows">';
   result += "</tbody>";
