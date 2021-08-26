@@ -84,31 +84,31 @@ function formatAction(state, token, isInTable) {
     //       "</input>"
     //   );
     // }
-    
+
     // let {"index": a, "*": b} = state
     // b.length = 1
     // let news = {
     //   "index":a,
     //   "*": b}
-      formattedActionElements.push(
-        '<input type="checkbox"  name="' +
-          state.index +
-          "_" +
-          token +
-          '" ' +
-          (i == 0 ? 'checked="true"' : "") +
-          ' onchange="parseInput();">' +
-          formatActionElement(action[0]) +
-          "</input>"
-      );
-    }
-    // formattedActionElements.push(formatActionElement(action[0]));
-   else {
+    formattedActionElements.push(
+      '<input type="checkbox"  name="' +
+        state.index +
+        "_" +
+        token +
+        '" ' +
+        (i == 0 ? 'checked="true"' : "") +
+        ' onchange="parseInput();">' +
+        formatActionElement(action[0]) +
+        "</input>"
+    );
+  }
+  // formattedActionElements.push(formatActionElement(action[0]));
+  else {
     formattedActionElements.push(
       formatActionElement(chooseActionElement(state, token))
     );
     // console.log(JSON.stringify(state))
-  // console.log(token)
+    // console.log(token)
   }
 
   var result = formattedActionElements.join(" / ");

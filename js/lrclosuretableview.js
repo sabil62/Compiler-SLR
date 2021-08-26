@@ -8,9 +8,9 @@ function formatLRClosureTable(lrClosureTable) {
   result += '<tbody id="lrClosureTableRows">';
 
   var kernel0 = lrClosureTable.kernels[0];
-  console.log(lrClosureTable.kernels);
-  console.log(formatItems(lrClosureTable.kernels[6].items));
-  console.log(formatItems(lrClosureTable.kernels[6].closure));
+  // console.log(lrClosureTable.kernels);
+  // console.log(formatItems(lrClosureTable.kernels[6].items));
+  // console.log(formatItems(lrClosureTable.kernels[6].closure));
   // console.log(lrClosureTable.kernels[6].items);
 
   // console.log(lrClosureTable.kernels[0].kernel.equals);
@@ -32,7 +32,7 @@ function formatLRClosureTable(lrClosureTable) {
 
   let globalARR = lrClosureTable.kernels;
 
-  console.log(formatItems(lrClosureTable.kernels[0].closure));
+  // console.log(formatItems(lrClosureTable.kernels[0].closure))
   for (var i in lrClosureTable.kernels) {
     var kernel = lrClosureTable.kernels[i];
 
