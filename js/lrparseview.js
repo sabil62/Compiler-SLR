@@ -1,12 +1,12 @@
-//ANALISA A ENTRADA - NO PROCESSO DE RECONHECIMENTO DE SENTENÇA
+//ANALYZES THE ENTRY - IN THE SENTENCE RECOGNITION PROCESS
 function parseInput() {
-  var stack = [0]; //inicia a pilha em 0
+  var stack = [0]; //starts the stack at 0
 
   function stateIndex() {
     return stack[2 * ((stack.length - 1) >> 1)];
   }
 
-  //declara as variaveis para a criação da tabela de reconhecimento de entrada
+  //declares the variables for the creation of the input recognition table
   var tokens = ($element("input").value.trim() + " $").split(" ");
   var maximumStepCount = parseInt($element("maximumStepCount").value);
   var tokenIndex = 0;
@@ -24,7 +24,7 @@ function parseInput() {
     "</td></tr>\n";
   var i = 2;
 
-  //monta a tabela - reconhecendo a entrada
+  //Entrance Table
   while (
     i <= maximumStepCount &&
     action != undefined &&
@@ -90,7 +90,7 @@ function parseInput() {
   }
 }
 
-//estrutura da tabela - HTML
+//Table Structure -in  HTML
 function formatInitialParseView(input, maximumStepCount) {
   var result =
     '<p><b>Sentence to be recognized: </b><input class=\'form-control\' id="input" type="text" size="' +
@@ -111,7 +111,7 @@ function formatInitialParseView(input, maximumStepCount) {
   result += "<thead>";
   result += '<tr><th colspan="4">Recognition of the above Entry</th></tr>';
   result +=
-    "<tr><th>Step</th><th>Battery</th><th>Intry Tape</th><th>Action</th></tr>";
+    "<tr><th>Step</th><th>Stack</th><th>Intry Tape</th><th>Action</th></tr>";
   result += "</thead>";
   result += '<tbody id="traceAndTreeRows">';
   result += "</tbody>";
@@ -122,7 +122,7 @@ function formatInitialParseView(input, maximumStepCount) {
   return result;
 }
 
-//pilha
+//Stack
 function formatStack(stack) {
   var result = stack.slice(0);
 

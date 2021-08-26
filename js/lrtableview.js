@@ -60,6 +60,9 @@ function formatLRTable(lrTable) {
 //action
 function formatAction(state, token, isInTable) {
   var action = state[token];
+  // console.log(action);
+  // console.log("------------------------------");
+  // // console.log(token);
 
   if (action == undefined) {
     return "&nbsp;";
@@ -68,19 +71,24 @@ function formatAction(state, token, isInTable) {
   var formattedActionElements = [];
 
   if (1 < action.length && isInTable) {
-    for (var i in action) {
-      formattedActionElements.push(
-        '<input type="radio" name="' +
-          state.index +
-          "_" +
-          token +
-          '" ' +
-          (i == 0 ? 'checked="true"' : "") +
-          ' onchange="parseInput();">' +
-          formatActionElement(action[i]) +
-          "</input>"
-      );
-    }
+    // for (var i in action) {
+    //   formattedActionElements.push(
+    //     '<input type="radio" name="' +
+    //       state.index +
+    //       "_" +
+    //       token +
+    //       '" ' +
+    //       (i == 0 ? 'checked="true"' : "") +
+    //       ' onchange="parseInput();">' +
+    //       formatActionElement(action[0]) +
+    //       "</input>"
+    //   );
+
+    //   // formattedActionElements.push(
+    //   //   formatActionElement(chooseActionElement(state, token))
+    //   // );
+    // }
+    formattedActionElements.push(formatActionElement(action[0]));
   } else {
     formattedActionElements.push(
       formatActionElement(chooseActionElement(state, token))
@@ -90,7 +98,7 @@ function formatAction(state, token, isInTable) {
   var result = formattedActionElements.join(" / ");
 
   if (1 < action.length) {
-    result = '<span style="background-color: blue;">' + result + "</span>";
+    result = '<span style="background-color: white;">' + result + "</span>";
   }
 
   return result;
