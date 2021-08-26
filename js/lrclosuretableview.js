@@ -30,9 +30,9 @@ function formatLRClosureTable(lrClosureTable) {
 
   var done = [0];
 
-  let globalARR = lrClosureTable.kernels
+  let globalARR = lrClosureTable.kernels;
 
-  console.log(formatItems(lrClosureTable.kernels[0].closure))
+  console.log(formatItems(lrClosureTable.kernels[0].closure));
   for (var i in lrClosureTable.kernels) {
     var kernel = lrClosureTable.kernels[i];
 
