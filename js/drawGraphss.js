@@ -36,11 +36,18 @@ function drawGraph(dataForGraph, stateGraph) {
     console.log(signer);
   }
 
+  let actionObject = {
+    id: nodeArr.length,
+    label: "Accept",
+  };
+  nodeArr.push(actionObject);
+
   var nodes = new vis.DataSet(nodeArr);
 
   // create an array with edges
   for (let i = 0; i < dataForGraph.length; i++) {
     for (const goto in dataForGraph[i].gotos) {
+      console.log(dataForGraph[i].index);
       let tempObj = {
         from: dataForGraph[i].index,
         to: dataForGraph[i].gotos[goto],
@@ -49,6 +56,13 @@ function drawGraph(dataForGraph, stateGraph) {
       edgeArr.push(tempObj);
     }
   }
+  let actionEdge = {
+    from: actionData,
+    to: actionObject.id,
+    label: "$",
+  };
+  edgeArr.push(actionEdge);
+
   var edges = new vis.DataSet(edgeArr);
 
   // create a network
