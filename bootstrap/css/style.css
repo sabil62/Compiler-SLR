@@ -1,0 +1,52 @@
+html{height:100%;}
+
+body{
+	height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar{border-radius: 0 !important;}
+.navbar a{color: #e8e8e8;}
+.navbar li.active a, .navbar a:hover{background: none !important; color: #cccccc;}
+
+.bg-black{background-color: #292929;}
+
+.divider{
+	border-left: 1px solid #ccc;
+	min-height: 250px !important;
+}
+.remove-icon{color: #EB1414;}
+
+.success-label{
+	margin-bottom: 0px;
+	padding-top: 7%;
+}
+
+.my-tags{
+	top:0px !important;
+}
+
+.img-error-msg{
+	position: absolute;
+	padding-left: 70%;
+	padding-top: 2%;
+}
+
+#conjProducoes{
+	max-width: 100%;
+	min-height: 100px !important;
+}
+
+.alert-warning{
+	margin-top: 10px;
+}
+
+.growRow{
+	margin-bottom: 38%;
+}
+
+.footer{
+	color:#fff;
+	padding: 20px;
+}
