@@ -2,7 +2,7 @@
 function formatLRClosureTable(lrClosureTable) {
   var result = "<table border=\"1\" class='table table-bordered'>";
   result +=
-    '<thead><tr><th colspan="4">' +
+    '<thead><tr><th colspan="4" style="background-color:#e89ab17d">' +
     Item.prototype.grammarType +
     " - Table Closure </th></tr><tr><th> GOTO </th><th>Canonical Items</th><th>State</th><th>Closure</th></tr></thead>";
   result += '<tbody id="lrClosureTableRows">';

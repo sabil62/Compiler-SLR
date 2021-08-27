@@ -23,9 +23,6 @@ function formatGrammar(grammar) {
   result += "</textarea></td>";
   result += "</tr></tbody></table>";
 
-  result +=
-    "<br><div class='alert alert-info'><strong>Note.:</strong> After inserting the Production Set, the numbering of the productions is performed automatically.</div>";
-
   return result;
 }
 
@@ -51,7 +48,7 @@ function formatFirstFollow(grammar) {
 
   if (Item.prototype.grammarType == "SLR") {
     result +=
-      '<thead><tr><th colspan="3">Table First / Follow </th></tr><tr><th>Non-terminal</th><th>FIRST</th><th>FOLLOW</th></thead>';
+      '<thead><tr><th colspan="3" style="background-color:#e89ab17d">Table First / Follow </th></tr><tr><th>Non-terminal</th><th>FIRST</th><th>FOLLOW</th></thead>';
     result += "<tbody>";
 
     for (var i in grammar.nonterminals) {

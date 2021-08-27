@@ -93,7 +93,7 @@ function parseInput() {
 //Table Structure -in  HTML
 function formatInitialParseView(input, maximumStepCount) {
   var result =
-    '<p><b>Input Sequence: </b><input class=\'form-control\' id="input" type="text" size="' +
+    '<p style="background-color:#e89ab17d"; padding:6px;><b >Input Sequence: </b><input class=\'form-control\' id="input" type="text" size="' +
     input.length +
     '" onkeyup="resize(this, 1);" onchange="parseInput();" value="' +
     input +
@@ -105,7 +105,7 @@ function formatInitialParseView(input, maximumStepCount) {
     maximumStepCount +
     '"></p>';
   result +=
-    '<input type="button" class="btn btn-success btn-gerar btn-lg" value="Acknowledge Entry"><br><br>';
+    '<input type="button" style="background-color:#e55d85; color:white;" class="btn btn-gerar btn-lg" value="Display Parsing Sequence"><br><br>';
   result += "<br>";
   result += "<table class='table table-bordered'>";
   result += "<thead>";

@@ -4,13 +4,13 @@
 function formatLRTable(lrTable) {
   let acceptNoResult;
   var result =
-    "<h3 align='center'><b>With the above information, we generate the LR Syntax Table of this grammar::</b></div><table border=\"1\" class='table table-bordered'>";
+    "<h3 align='center'><b></b></div><table border=\"1\" class='table table-bordered'>";
   var grammar = lrTable.grammar;
   result += "<thead>";
   result +=
-    '<tr><th colspan="' +
+    '<tr><th style="background-color:#e89ab17d" colspan="' +
     (1 + grammar.terminals.length + 1 + grammar.nonterminals.length) +
-    '">LR Syntax Table</th></tr><tr><th rowspan="2"> State </th><th rowspan="1" colspan="' +
+    '">SLR Syntax Table</th></tr><tr><th rowspan="2"> State </th><th rowspan="1" colspan="' +
     (grammar.terminals.length + 1) +
     '"> Action </th><th colspan="' +
     grammar.nonterminals.length +
@@ -44,8 +44,8 @@ function formatLRTable(lrTable) {
     }
 
     result += "<td>" + formatAction(state, "$", true) + "</td>";
-    if(state["$"]) {
-      if (state["$"].toString() == 'r0'){
+    if (state["$"]) {
+      if (state["$"].toString() == "r0") {
         acceptNoResult = 1;
       }
     }

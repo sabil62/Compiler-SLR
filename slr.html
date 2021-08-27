@@ -52,11 +52,13 @@
             </button>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li class='active' ><a href="#">Final Compiler Project</a></li>
-				<li class='active d-lg-block d-none' style="margin-left: 700px;"><a href="#"><div style="display: flex; flex-direction: row-reverse;">Documentation</div></a></li>
+            <div class="row">
+            <div class="col-md-4"><img src="assets/kathmadnu.png" width="60px" style="display: inline-block;"/></div>
+            <div class="col-md-4 middle" >Final Project Compiler</div>
+           <div class="col-md-4 right" >	<a href="#">Documentation</a></div>
+              </div>
 
-              </ul>             
+                         
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </div>
@@ -82,14 +84,11 @@ function grammarChanged()
 	let a = formatLRClosureTable(lrClosureTable); //closure display
 	$element('lrClosureTableView').innerHTML = a[0];
 	let dataForGraph = a[1]
-<<<<<<< HEAD
-  let stateGraph = lrTable.states
-  // console.log(lrTable[states]);
-  // console.log(lrTable.states)
-  drawGraph(dataForGraph,stateGraph);
+  // let stateGraph = lrTable.states
+  // // console.log(lrTable[states]);
+  // // console.log(lrTable.states)
+  // drawGraph(dataForGraph,stateGraph);
 	// drawGraph(dataForGraph)
-=======
->>>>>>> 70b65c863711d26bbe9707df1868e23c725a6044
 
   let formattedLRTable = formatLRTable(lrTable);
 	$element('lrTableView').innerHTML = formattedLRTable[0]; //LR syntactic table display - Action and Goto
@@ -101,7 +100,7 @@ function grammarChanged()
 
 
 <div class="container">
-    <h2 align="center">SLR</h2>
+    <h2 align="center">SLR Parser</h2>
     <hr>
 
     <div class="row">
@@ -123,7 +122,7 @@ function grammarChanged()
 
 			<!-- button to generate action/goto table -->
 			<div align="center">
-			<hr><button type="button" class="btn btn-success btn-gerar btn-lg">Generate Syntactic Table</button>
+			<hr><button type="button" class="btn btn-gerar btn-lg" style="background-color: #e55d85; color: white;">Generate Syntax Tables</button>
 			<hr><br><br>	
 			</div>
 
@@ -271,7 +270,7 @@ function grammarChanged()
               <div class="team-name-profile">
                 <h3 style="font-size: 24px">Ashish Adhikari</h3>
                 
-                <a href="mailto:amazingashish061@gmail.com" style="font-size: 13.8px;">amazingashish061@gmail.com</a>
+                <a href="adhikariasis.com.np" style="font-size: 13.8px;"> adhikariasis.com.np</a>
                 <div style="margin-left: 10px">
                   <a href=""><i class="fa fa-twitter" style="
                               padding: 10px 12px;
@@ -345,7 +344,7 @@ function grammarChanged()
               <div class="team-name-profile">
                 <h3 style="font-size: 24px">Sansrit Paudel</h3>
                 <span>Kathmandu University</span>
-                <a href="mailto:happysansrit@gmail.com" style="font-size: 13.8px;">happysansrit@gmail.com</a>
+                <a href="sansrit.com.np" style="font-size: 13.8px;">sansrit.com.np</a>
                 <div style="margin-left: 10px">
                   <a href="https://twitter.com/Sansrit"><i class="fa fa-twitter" style="
                               padding: 10px 12px;
