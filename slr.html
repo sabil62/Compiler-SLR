@@ -82,10 +82,11 @@ function grammarChanged()
 	let a = formatLRClosureTable(lrClosureTable); //closure display
 	$element('lrClosureTableView').innerHTML = a[0];
 	let dataForGraph = a[1]
-	drawGraph(dataForGraph)
 
-	$element('lrTableView').innerHTML = formatLRTable(lrTable); //LR syntactic table display - Action and Goto
-	
+  let formattedLRTable = formatLRTable(lrTable);
+	$element('lrTableView').innerHTML = formattedLRTable[0]; //LR syntactic table display - Action and Goto
+  let actionData = formattedLRTable[1]
+  drawGraph(dataForGraph, actionData)
 	parseInput();//displays sebtence recognition
 }
 </script>

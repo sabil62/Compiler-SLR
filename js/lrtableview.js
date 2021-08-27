@@ -2,6 +2,7 @@
 
 //formata a tabela - HTML
 function formatLRTable(lrTable) {
+  let acceptNoResult;
   var result =
     "<h3 align='center'><b>With the above information, we generate the LR Syntax Table of this grammar::</b></div><table border=\"1\" class='table table-bordered'>";
   var grammar = lrTable.grammar;
@@ -41,6 +42,11 @@ function formatLRTable(lrTable) {
     }
 
     result += "<td>" + formatAction(state, "$", true) + "</td>";
+    if(state["$"]) {
+      if (state["$"].toString() == 'r0'){
+        acceptNoResult = 1;
+      }
+    }
 
     for (var j in grammar.nonterminals) {
       var nonterminal = grammar.nonterminals[j];
@@ -54,7 +60,7 @@ function formatLRTable(lrTable) {
   result += "</tbody>";
   result += "</table>";
 
-  return result;
+  return [result, acceptNoResult];
 }
 
 //action
