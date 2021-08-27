@@ -1,5 +1,17 @@
-function drawGraph(dataForGraph) {
-  console.log(dataForGraph[1]);
+function drawGraph(dataForGraph, stateGraph) {
+  console.log(dataForGraph);
+  console.log(stateGraph);
+  //here $ is id
+  console.log(stateGraph[1].$);
+  console.log(stateGraph[1].$[0].actionType);
+
+  //   1: State
+  // $: Array(1)
+  // 0: LRAction {actionType: "r", actionValue: 0, toString: ƒ}
+  // length: 1
+  // [[Prototype]]: Array(0)
+  // index: 1
+  // [[Prototype]]: Objec
 
   let nodeArr = [];
   let edgeArr = [];
@@ -14,6 +26,14 @@ function drawGraph(dataForGraph) {
       label: tempLabel,
     };
     nodeArr.push(tempObj);
+    //for accept-------------
+    var signer = [];
+    for (let signs in stateGraph[i]) {
+      // let pp = stateGraph[i].signs[0].actionType;
+      signer.push({ key: signs, value: stateGraph[i].signs });
+    }
+    console.log("lion");
+    console.log(signer);
   }
 
   var nodes = new vis.DataSet(nodeArr);

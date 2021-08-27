@@ -1,7 +1,8 @@
-function drawGraph(dataForGraph) {
-  console.log(formatItems(dataForGraph[1].closure));
-  console.log(dataForGraph[3].gotos);
-  console.log(dataForGraph.length);
+function drawGraph(dataForGraph, stateGraph) {
+  // console.log(formatItems(dataForGraph[1].closure));
+  // console.log(dataForGraph[3].gotos);
+  // console.log(dataForGraph.length);
+  console.log(stateGraph);
 
   var data = [];
 

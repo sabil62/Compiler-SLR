@@ -82,7 +82,11 @@ function grammarChanged()
 	let a = formatLRClosureTable(lrClosureTable); //closure display
 	$element('lrClosureTableView').innerHTML = a[0];
 	let dataForGraph = a[1]
-	drawGraph(dataForGraph)
+  let stateGraph = lrTable.states
+  // console.log(lrTable[states]);
+  // console.log(lrTable.states)
+  drawGraph(dataForGraph,stateGraph);
+	// drawGraph(dataForGraph)
 
 	$element('lrTableView').innerHTML = formatLRTable(lrTable); //LR syntactic table display - Action and Goto
 	

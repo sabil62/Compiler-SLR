@@ -29,6 +29,8 @@ function formatLRTable(lrTable) {
   result += "</thead>";
   result += "<tbody>";
 
+  console.log(lrTable.states);
+
   for (var i in lrTable.states) {
     var state = lrTable.states[i];
 
