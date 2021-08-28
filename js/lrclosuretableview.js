@@ -73,9 +73,7 @@ function formatItems(items) {
       item.dotIndex == item.rule.development.length ||
       EPSILON == item.rule.development[0];
 
-    formattedItems.push(
-      itemIsFinal ? '<span style="color: black;">' + item + "</span>" : item
-    );
+    formattedItems.push(itemIsFinal ? item : item);
   }
 
   return formattedItems.join("; ");
