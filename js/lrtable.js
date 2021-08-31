@@ -52,7 +52,7 @@ function LRAction(actionType, actionValue) {
   };
 }
 
-//funcao que define qual ação será utilizada
+//function that defines which action will be used
 function chooseActionElement(state, token) {
   var action = state[token];
 
@@ -68,5 +68,5 @@ function chooseActionElement(state, token) {
     }
   }
 
-  return action[0]; //retorna a ação
+  return action[0]; //return action
 }
