@@ -1,6 +1,6 @@
-//TABELA SINTATICA LR - ACTION e GOTO
+// SYNTATIC TABLE LR - ACTION and GOTO
 
-//formata a tabela - HTML
+// tabular format - HTML
 function formatLRTable(lrTable) {
   let acceptNoResult;
   var result =

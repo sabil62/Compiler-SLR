@@ -1,6 +1,6 @@
 var EPSILON = "''";
 
-//gramatica
+//Grammar
 function Grammar(text) {
   this.alphabet = [];
   this.nonterminals = [];

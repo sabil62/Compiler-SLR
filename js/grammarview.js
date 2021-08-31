@@ -1,6 +1,6 @@
-//parte grafica - exibe a gramatica e a tabela FIRST/FOLLOW
+// graphical part - displays the grammar and the FIRST/FOLLOW table
 
-//tabela, textarea, divs...
+//table, textarea, divs...
 function formatGrammar(grammar) {
   var result = "";
   if (typeof Item != "undefined") {
@@ -26,7 +26,7 @@ function formatGrammar(grammar) {
   return result;
 }
 
-//regras de exibição
+//dispaly rules
 function displayRuleIndices() {
   var rules = $element("grammar").value.split("\n");
   var ruleIndex = 0;
@@ -42,7 +42,7 @@ function displayRuleIndices() {
   }
 }
 
-//conteudo da tabela fisrt/follow - recebendo a gramatica como parametro para exibir o conteudo
+// table content first/follow - receiving grammar as parameter to display content
 function formatFirstFollow(grammar) {
   var result = "<table class='table table-bordered'>";
 

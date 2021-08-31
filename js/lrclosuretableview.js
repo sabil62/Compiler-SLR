@@ -1,4 +1,4 @@
-//exibe a tabela closure - HTML - conteudo da tabela
+//display table closure - HTML - table contents
 function formatLRClosureTable(lrClosureTable) {
   var result = "<table border=\"1\" class='table table-bordered'>";
   result +=
@@ -60,10 +60,10 @@ function formatLRClosureTable(lrClosureTable) {
   result += "</tbody>";
   result += "</table>";
 
-  return [result, globalARR]; //retorna a tabela montada
+  return [result, globalARR]; //return the mounted table
 }
 
-//formata os itens da tabela
+//formats table items
 function formatItems(items) {
   var formattedItems = [];
 
