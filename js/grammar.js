@@ -1,19 +1,19 @@
-var EPSILON = "''"; //sentenca vazia
+var EPSILON = "''";
 
 //gramatica
 function Grammar(text) {
-  this.alphabet = []; //alfabeto
-  this.nonterminals = []; //nao terminais
-  this.terminals = []; //terminais
-  this.rules = []; //regras
-  this.firsts = new Object(); //first
-  this.follows = new Object(); //follow
+  this.alphabet = [];
+  this.nonterminals = [];
+  this.terminals = [];
+  this.rules = [];
+  this.firsts = new Object();
+  this.follows = new Object();
 
   this.toString = function () {
     return this.rules.join("\n");
   };
 
-  //regras para nao-terminais
+  //rules for non-terminals
   this.getRulesForNonterminal = function (nonterminal) {
     var result = [];
 
@@ -28,7 +28,7 @@ function Grammar(text) {
     return result;
   };
 
-  //sequencia de first do conjunto de producoes
+  //first sequence of the production set
   this.getSequenceFirsts = function (sequence) {
     var result = [];
     var epsilonInSymbolFirsts = true;
@@ -66,13 +66,13 @@ function Grammar(text) {
     return result;
   };
 
-  //inicializa conjuntos
+  //initialze sets
   initializeRulesAndAlphabetAndNonterminals(this);
   initializeAlphabetAndTerminals(this);
   initializeFirsts(this);
   initializeFollows(this);
 
-  //inicializa alfabeto da gramatica e nao-terimais - sempre recebendo a gramatica digitado pelo usuario como parametro
+  //initializes grammar alphabet and non-terimals - always receiving the grammar typed by the user as parameter
   function initializeRulesAndAlphabetAndNonterminals(grammar) {
     var lines = text.split("\n");
 
@@ -94,7 +94,7 @@ function Grammar(text) {
     }
   }
 
-  //inicializa os terminais
+  //initialize terminals
   function initializeAlphabetAndTerminals(grammar) {
     for (var i in grammar.rules) {
       var rule = grammar.rules[i];
@@ -110,7 +110,7 @@ function Grammar(text) {
     }
   }
 
-  //conjunto first
+  //First
   function initializeFirsts(grammar) {
     var notDone;
 
@@ -171,7 +171,7 @@ function Grammar(text) {
     return result;
   }
 
-  //conjunto FOLLOW
+  // FOLLOW
   function initializeFollows(grammar) {
     var notDone;
 
